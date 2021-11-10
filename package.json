@@ -1,7 +1,7 @@
 {
   "name": "@npetit95/node-update-ovh-dynhost",
   "version": "1.0.0",
-  "description": "Simple script to create or update your dynhost with the OVH API",
+  "description": "Simple script to update your dynhost(s) IP with the OVH API",
   "private": true,
   "main": "app.js",
   "author": "Nicolas Petit <mail@nicolaspetit.dev>",
