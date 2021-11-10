@@ -1,0 +1,5 @@
+- First you've to create a DynHost on your domain (or reuse)
+- Then you should create an API_KEY and API_SECRET [here](https://eu.api.ovh.com/createToken)
+- Generate the ConsumerKey (don't forget to validate the 2FA if needed)
+- Save every variables to the env file (.env)
+- Run the script with `node app.js`
