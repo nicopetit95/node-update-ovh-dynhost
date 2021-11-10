@@ -1,0 +1,9 @@
+{
+  "name": "@npetit95/node-ovh-dynhost",
+  "version": "1.0.0",
+  "description": "Simple script to update your dynhost with the OVH API",
+  "author": "Nicolas Petit <mail@nicolaspetit.dev>",
+  "dependencies": {
+    "ip": "^1.1.5"
+  }
+}
