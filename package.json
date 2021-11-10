@@ -6,6 +6,7 @@
   "main": "app.js",
   "author": "Nicolas Petit <mail@nicolaspetit.dev>",
   "dependencies": {
+    "colors": "^1.4.0",
     "dotenv-flow": "^3.2.0",
     "ip": "^1.1.5",
     "ovh": "^2.0.3"
