@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "Simple script to update your dynhost(s) IP with the OVH API",
   "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nicopetit95/node-update-ovh-dynhost.git"
+  },
   "main": "app.js",
   "author": "Nicolas Petit <mail@nicolaspetit.dev>",
   "dependencies": {
