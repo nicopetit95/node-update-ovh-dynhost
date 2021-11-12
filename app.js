@@ -1,5 +1,7 @@
 require('colors')
-require('dotenv-flow').config()
+require('dotenv-flow').config({
+  path: __dirname
+})
 const ovh = require('ovh')
 const { exec } = require('child_process')
 const ip = require('ip')
