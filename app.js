@@ -1,6 +1,7 @@
 require('colors')
 require('dotenv-flow').config()
 const ovh = require('ovh')
+const { exec } = require('child_process')
 const ip = require('ip')
 
 console.log(`OVH_APP_KEY`.blue, process.env.OVH_APP_KEY)
@@ -9,7 +10,7 @@ console.log(`OVH_CONSUMER_KEY`.blue, process.env.OVH_CONSUMER_KEY)
 console.log(`OVH_DOMAIN`.blue, process.env.OVH_DOMAIN)
 console.log(`OVH_SUBDOMAIN`.blue, process.env.OVH_SUBDOMAIN)
 
-const run = async () => {
+const run = async ipAddress => {
   try {
     // Instance of OVH API
     const ovhInstance = ovh({
@@ -25,8 +26,7 @@ const run = async () => {
     })
     // If records ?
     if (records && records.length > 0) {
-      // Magical fonction to get the actual external IPv4
-      const ipAddress = ip.address()
+      // Convert ipAddress to long to be compared
       const ipAddressLong = ip.toLong(ipAddress)
       console.log(`IpAddress`.blue, ipAddress)
       // For every record we'll check the actual ip and update if needed
@@ -54,8 +54,22 @@ const run = async () => {
       console.log(`No record found for ${process.env.OVH_SUBDOMAIN || '*'}.${process.env.OVH_DOMAIN}`.yellow)
     }
   } catch (err) {
-    console.error(`Error`.red, error)
+    console.error(`Unhandled error`.red, error)
   }
 }
 
-run()
+// Call to ifconfig.me to get the public ipv4 address
+exec("curl ifconfig.me", (error, stdout) => {
+  if (error) {
+    console.error(`Error retrieving ip address`.red, error)
+    process.exit(1)
+  } else {
+    run(stdout).then(() => {
+      console.log(`Update process completed`.green)
+      process.exit(0)
+    }).catch(() => {
+      console.error(`Update process failed`.red)
+      process.exit(1)
+    })
+  }
+})
